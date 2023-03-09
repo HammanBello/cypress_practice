@@ -63,7 +63,7 @@ pipeline {
 
         stage('Allure Report generation'){
         steps{
-            catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE')
+            // catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE')
                     
             allure([
                 includeProperties : true,
