@@ -55,7 +55,7 @@ pipeline {
         
         stage('Testing') {
             steps {
-                catchError(buildResult: 'FAILURE', stageResult: 'FAILURE')
+                // catchError(buildResult: 'FAILURE', stageResult: 'FAILURE')
                 bat "npm i"
                 bat "npx cypress run --browser ${BROWSER} --spec ${SPEC} --env allure=true"
             }
