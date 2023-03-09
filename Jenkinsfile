@@ -55,15 +55,15 @@ pipeline {
         
         stage('Testing') {
             steps {
-                // catchError(buildResult: 'FAILURE', stageResult: 'FAILURE')
+                catchError(buildResult: 'FAILURE', stageResult: 'FAILURE'){
                 bat "npm i"
-                bat "npx cypress run --browser ${BROWSER} --spec ${SPEC} --env allure=true"
+                bat "npx cypress run --browser ${BROWSER} --spec ${SPEC} --env allure=true"}
             }
         }
 
         stage('Allure Report generation'){
         steps{
-            // catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE')
+            catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE'){
                     
             allure([
                 includeProperties : true,
@@ -71,7 +71,7 @@ pipeline {
                 properties : [[key: 'release version', value: '4.0.2']],
                 reportBuildPolicy : 'ALWAYS',
                 results : [[path: 'allure-results']]
-            ])
+            ])}
         }}
         
         stage('Deploy'){
