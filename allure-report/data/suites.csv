@@ -1,2 +1,2 @@
 "Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
-"failed","Thu Mar 09 10:00:30 GMT+01:00 2023","Thu Mar 09 10:00:36 GMT+01:00 2023","5947","","My First Test","","","","Visits the Kitchen Sink",""
+"failed","Thu Mar 09 12:24:03 GMT+01:00 2023","Thu Mar 09 12:24:09 GMT+01:00 2023","6107","","My First Test","","","","Visits the Kitchen Sink",""

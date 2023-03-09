@@ -26,6 +26,6 @@ module.exports = defineConfig({
       allureWriter(on, config); return config;
       // implement node event listeners here
     }
-    // ,specPattern: 'cypress/integration/**/*.{js,jsx,ts,tsx}'
+    ,specPattern: 'cypress/integration/**/*.cy.{js,jsx,ts,tsx}'
   },
 });
