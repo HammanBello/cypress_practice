@@ -6,6 +6,7 @@ const allureWriter = require('@shelex/cypress-allure-plugin/writer');
 
 
 module.exports = defineConfig({
+  projectId: 'gzzwct',
   reporter: 'cypress-mochawesome-reporter',
   reporterOptions: {
     reportDir: "cypress/report",
@@ -19,7 +20,7 @@ module.exports = defineConfig({
     screenshotOnRunFailure: true,
     videoOnRunFailure: true,
   e2e: {
-    baseUrl: 'https://demo.nopcommerce.com/',
+    // baseUrl: 'https://demo.nopcommerce.com/',
     experimentalStudio: true,
     setupNodeEvents(on, config) {
       require('cypress-mochawesome-reporter/plugin')(on);
