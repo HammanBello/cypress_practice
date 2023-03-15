@@ -50,17 +50,16 @@ describe('My First Test', () => {
 
 
   it('Add to cart', () => {
-
-
-      
-      productData.productName.forEach(function(element){
-      cy.get('.product-item > .details > .product-title > a').contains(element).eq(0).click();
-      cy.get('.qty-input').clear();
-      cy.get('.qty-input').type('5');
-      cy.get('button').contains('Add to cart').click();
-      cy.get('.content').should('have.text', 'The product has been added to your shopping cart');
-      cy.visit('https://demo.nopcommerce.com');
-    });
+    productData.productName.forEach(function(element){
+    cy.get('.product-item > .details > .product-title > a').contains(element).eq(0).click();
+    cy.get('.qty-input').clear();
+    cy.get('.qty-input').type('5');
+    cy.get('button').contains('Add to cart').click();
+    cy.get('.content').should('have.text', 'The product has been added to your shopping cart');
+    cy.get('.cart-label').click();
+    cy.get('.product > .product-name').contains(element ).should('be.visible');
+    cy.visit('https://demo.nopcommerce.com');
+  });
 
     cy.get('.product-item > .details > .product-title > a').contains("Build your own computer").eq(0).click();
     cy.get('#product_attribute_3_7').check();
@@ -72,7 +71,9 @@ describe('My First Test', () => {
     cy.get('#add-to-cart-button-1').click();
     cy.get('.content').should('have.text', 'The product has been added to your shopping cart');
     cy.visit('https://demo.nopcommerce.com');
-     
+
+
+
 
 
 
