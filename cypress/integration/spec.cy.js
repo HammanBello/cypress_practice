@@ -1,12 +1,14 @@
 describe('My First Test', () => {
   let testData_AngularPractice ;
   let productData ;
+  let qtyData ;
   
-  before(() => {
+  beforeEach(() => {
     // runs once before all tests in the block
     cy.fixture('user_data.json').then(function(JSonInside){
         testData_AngularPractice = JSonInside;
     })
+    
     cy.fixture('products.json').then(function(JSonInside){
       productData = JSonInside;
   }).then( () => {
@@ -70,14 +72,46 @@ describe('My First Test', () => {
     cy.get('#product_enteredQuantity_1').type('5');
     cy.get('#add-to-cart-button-1').click();
     cy.get('.content').should('have.text', 'The product has been added to your shopping cart');
+    cy.get('.cart-label').click();
+    cy.get('.product > .product-name').contains("Build your own computer" ).should('be.visible');
     cy.visit('https://demo.nopcommerce.com');
 
+  })
 
+  // it('Remove from cart', () => {
+  //   cy.visit('https://demo.nopcommerce.com');
+  //   cy.get('.cart-label').click();
+  //   productData.productName.forEach(function(element){
+  //   cy.get('.product > .product-name').contains(element).parent().parent().children('.remove-from-cart').should('be.visible').click();
+  //   cy.get('.page-body').should('not.contain',element)
+  // });
 
+  // cy.get('.product > .product-name').contains("Build your own computer").parent().parent().children('.remove-from-cart').should('be.visible').click();
+  // cy.get('.page-body').should('not.contain',"Build your own computer")
+  //   // cy.get('.product > .product-name').contains("Build your own computer").should('be.visible').get('.remove-from-cart').should('be.visible').click();
+  //   // cy.get('.product > .product-name').contains("Build your own computer").should('not.be.visible')
+  //   // cy.visit('https://demo.nopcommerce.com');
 
+  // })
 
+  it('Modify quantity from cart', () => {
+    cy.visit('https://demo.nopcommerce.com');
+    cy.get('.cart-label').click();
 
+    let i = 0;
+    productData.productName.forEach(function(element){
+    cy.get('.product > .product-name').contains(element).parent().parent().children('td').children('.qty-input').should('be.visible').type(productData.qtyValue[i]);
+    i++;
+    // cy.get('.page-body').should('not.contain',element)
+  });
 
-
+  cy.get('.product > .product-name').contains("Build your own computer").parent().parent().children('td').children('.qty-input').should('be.visible').type('6');
+  // cy.get('.page-body').should('not.contain',"Build your own computer")
+    // cy.get('.product > .product-name').contains("Build your own computer").should('be.visible').get('.remove-from-cart').should('be.visible').click();
+    // cy.get('.product > .product-name').contains("Build your own computer").should('not.be.visible')
+    // cy.visit('https://demo.nopcommerce.com');
+  cy.get('#updatecart').should('be.visible').click()
+  //Implementer une vérification des quantités
+  cy.get()
   })
 })
